@@ -28,4 +28,4 @@ An interactive Android application designed to estimate trip fuel requirements a
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/](https://github.com/)<your-username>/FuelConsumptionEstimator.git
+   git clone https://github.com/rotittelur/Android-programming-task/tree/PBL1.git
