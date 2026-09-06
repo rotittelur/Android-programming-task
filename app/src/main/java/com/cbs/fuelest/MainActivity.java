@@ -1,10 +1,6 @@
 package com.cbs.fuelest;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,31 +20,22 @@ public class MainActivity extends AppCompatActivity {
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
-        String[] fuelOptions = {
-                "BUDI RON95 (RM1.99)",
-                "BUDI Diesel (RM2.10)",
-                "RON95 Full (RM3.77)",
-                "RON97 Full (RM4.25)",
-                "Diesel Full (RM4.67)",
-                "Custom"
-        };
+        setupRecyclerViews();
+    }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_dropdown_item,
-                fuelOptions
-        );
-        binding.fuelTypeSpinner.setAdapter(adapter);
+    private void setupRecyclerViews() {
+        // Vehicle Selection
+        binding.rvCars.setAdapter(new VehicleAdapter(viewModel.getCars(), viewModel));
+        binding.rvMotorcycles.setAdapter(new VehicleAdapter(viewModel.getMotorcycles(), viewModel));
+        binding.rvTrucks.setAdapter(new VehicleAdapter(viewModel.getTrucks(), viewModel));
+        binding.rvBuses.setAdapter(new VehicleAdapter(viewModel.getBuses(), viewModel));
+        binding.rvCustom.setAdapter(new VehicleAdapter(viewModel.getCustom(), viewModel));
 
-        binding.fuelTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int type, long id) {
-                viewModel.fueltype(type);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        // Fuel Selection
+        viewModel.getSelectedVehicle().observe(this, vehicle -> {
+            if (vehicle != null) {
+                binding.rvFuels.setAdapter(new FuelAdapter(viewModel.getAvailableFuels(), viewModel));
             }
         });
-
     }
 }

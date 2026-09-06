@@ -1,3 +1,41 @@
 <resources>
-    <string name="app_name">Fuel Estimator</string>
+    <string name="app_name">Petrol Nice</string>
+
+    <!-- Section Labels -->
+    <string name="label_distance">Distance to Travel (km)</string>
+    <string name="label_fuel_efficiency">Fuel Efficiency (km/L)</string>
+    <string name="label_select_fuel_type">Select Fuel Type</string>
+    <string name="label_vehicle_efficiency_mode">Vehicle &amp; Efficiency Mode</string>
+    <string name="label_vehicle_type">Vehicle Type</string>
+
+    <!-- Hints -->
+    <string name="hint_distance">Enter distance in km</string>
+    <string name="hint_efficiency">Enter fuel efficiency</string>
+
+    <!-- RadioButton Labels -->
+    <string name="mode_preset">Preset</string>
+    <string name="mode_custom">Custom</string>
+
+    <!-- Fuel Options -->
+    <string name="fuel_budi_ron95">BUDI Madani RON95 (RM 1.99)</string>
+    <string name="fuel_budi_diesel">BUDI Diesel (RM 2.10)</string>
+    <string name="fuel_ron95_retail">RON95 Retail (RM 3.77)</string>
+    <string name="fuel_ron97_retail">RON97 Retail (RM 4.25)</string>
+    <string name="fuel_diesel_retail">Diesel Retail (RM 4.67)</string>
+
+    <!-- Vehicle Options -->
+    <string name="vehicle_car">Car</string>
+    <string name="vehicle_motorcycle">Motorcycle</string>
+
+    <!-- Button -->
+    <string name="btn_calculate">Calculate Estimate</string>
+
+    <!-- Result Format Strings -->
+    <string name="result_fuel_needed">Fuel Needed: %.2f Liters</string>
+    <string name="result_estimated_cost">Estimated Cost: RM %.2f</string>
+    <string name="error_efficiency_zero">Error: Efficiency must be greater than 0</string>
+    <string name="error_invalid_input">Please enter valid numbers in all fields.</string>
+
+    <!-- App Header -->
+    <string name="app_tagline">Fuel Cost Calculator</string>
 </resources>

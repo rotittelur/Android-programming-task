@@ -1,68 +1,139 @@
 package com.cbs.fuelest;
 
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import java.util.List;
 
 public class FuelViewModel extends ViewModel {
 
+    public enum Step {
+        WELCOME,
+        VEHICLE_SELECTION,
+        CUSTOM_EFFICIENCY_INPUT,
+        FUEL_SELECTION,
+        DISTANCE_INPUT,
+        RESULT
+    }
+
+    private final MutableLiveData<Step> currentStep = new MutableLiveData<>(Step.WELCOME);
+    public LiveData<Step> getCurrentStep() { return currentStep; }
+
+    // --- Selections ---
+    private final MutableLiveData<VehicleItem> selectedVehicle = new MutableLiveData<>();
+    public LiveData<VehicleItem> getSelectedVehicle() { return selectedVehicle; }
+
+    private final MutableLiveData<FuelItem> selectedFuel = new MutableLiveData<>();
+    public LiveData<FuelItem> getSelectedFuel() { return selectedFuel; }
+
+    // --- Inputs ---
     public MutableLiveData<String> distance = new MutableLiveData<>("");
-    public MutableLiveData<String> efficiency = new MutableLiveData<>("");
-    public MutableLiveData<String> fuelPrice = new MutableLiveData<>("");
-
-    public MutableLiveData<Boolean> isCustomPriceVisible = new MutableLiveData<>(false);
-
+    public MutableLiveData<String> customEfficiency = new MutableLiveData<>("");
+    
+    // --- Computed Results ---
     public MutableLiveData<String> fuelNeededResult = new MutableLiveData<>("");
     public MutableLiveData<String> estimatedCostResult = new MutableLiveData<>("");
 
-    public void fueltype(int type){
-        switch (type){
-            case 0: // BUDI RON95
-                fuelPrice.setValue("1.99");
-                isCustomPriceVisible.setValue(false);
-                break;
-            case 1: //BUDI Diesel
-                fuelPrice.setValue("2.10");
-                isCustomPriceVisible.setValue(false);
-                break;
-            case 2: // RON95 full
-                fuelPrice.setValue("3.77");
-                isCustomPriceVisible.setValue(false);
-                break;
-            case 3:// RON97 full
-                fuelPrice.setValue("4.25");
-                isCustomPriceVisible.setValue(false);
-                break;
-            case 4: // Diesel full
-                fuelPrice.setValue("4.67");
-                isCustomPriceVisible.setValue(false);
-                break;
-            case 5: // custom
-                fuelPrice.setValue("");
-                isCustomPriceVisible.setValue(true);
-                break;
+    // --- Data Lists ---
+    public List<VehicleItem> getCars() { return VehicleRepository.getCars(); }
+    public List<VehicleItem> getMotorcycles() { return VehicleRepository.getMotorcycles(); }
+    public List<VehicleItem> getTrucks() { return VehicleRepository.getTrucks(); }
+    public List<VehicleItem> getBuses() { return VehicleRepository.getBuses(); }
+    public List<VehicleItem> getCustom() { return VehicleRepository.getCustom(); }
+    
+    public List<FuelItem> getAvailableFuels() {
+        VehicleItem vehicle = selectedVehicle.getValue();
+        if (vehicle != null && vehicle.getName().equals("Custom")) {
+            return VehicleRepository.getAllFuelTypes(); // Show all for custom
+        }
+        return VehicleRepository.getFuelsForVehicle(vehicle);
+    }
+
+    // --- Navigation ---
+    public void startApp() {
+        currentStep.setValue(Step.VEHICLE_SELECTION);
+    }
+
+    public void selectVehicle(VehicleItem vehicle) {
+        selectedVehicle.setValue(vehicle);
+        if (vehicle.getName().equals("Custom")) {
+            currentStep.setValue(Step.CUSTOM_EFFICIENCY_INPUT);
+        } else {
+            currentStep.setValue(Step.FUEL_SELECTION);
         }
     }
 
+    public void submitCustomEfficiency() {
+        if (customEfficiency.getValue() != null && !customEfficiency.getValue().isEmpty()) {
+            currentStep.setValue(Step.FUEL_SELECTION);
+        }
+    }
+
+    public void selectFuel(FuelItem fuel) {
+        selectedFuel.setValue(fuel);
+        currentStep.setValue(Step.DISTANCE_INPUT);
+    }
+
+    public void goToDistance() {
+        currentStep.setValue(Step.DISTANCE_INPUT);
+    }
 
     public void calculate() {
-        try {
-            double dist = Double.parseDouble(distance.getValue());
-            double eff = Double.parseDouble(efficiency.getValue());
-            double price = Double.parseDouble(fuelPrice.getValue());
+        VehicleItem vehicle = selectedVehicle.getValue();
+        FuelItem fuel = selectedFuel.getValue();
+        String distStr = distance.getValue();
 
-            if (eff > 0){
+        if (vehicle == null || fuel == null || distStr == null || distStr.isEmpty()) {
+            fuelNeededResult.setValue("Please complete all steps.");
+            return;
+        }
+
+        try {
+            double dist = Double.parseDouble(distStr);
+            double eff;
+            if (vehicle.getName().equals("Custom")) {
+                eff = Double.parseDouble(customEfficiency.getValue());
+            } else {
+                eff = vehicle.getEfficiency();
+            }
+            double price = fuel.getPrice();
+
+            if (eff > 0) {
                 double fuelNeeded = dist / eff;
                 double estimatedCost = fuelNeeded * price;
 
-                fuelNeededResult.setValue(String.format("Fuel Needed:%.2f Liters", fuelNeeded));
-                estimatedCostResult.setValue(String.format("Estimated Cost: RM %.2f", estimatedCost));
-            } else{
-                fuelNeededResult.setValue("Error: Efficiency must be greater than 0");
-                estimatedCostResult.setValue("");
+                fuelNeededResult.setValue(String.format("%.2f Liters", fuelNeeded));
+                estimatedCostResult.setValue(String.format("RM %.2f", estimatedCost));
+                currentStep.setValue(Step.RESULT);
             }
         } catch (NumberFormatException e) {
-            fuelNeededResult.setValue("Please enter valid numbers in all fields.");
-            estimatedCostResult.setValue("");
+            fuelNeededResult.setValue("Invalid distance entered.");
+        }
+    }
+
+    public void restart() {
+        selectedVehicle.setValue(null);
+        selectedFuel.setValue(null);
+        distance.setValue("");
+        currentStep.setValue(Step.WELCOME);
+    }
+    
+    public void goBack() {
+        Step current = currentStep.getValue();
+        if (current == null) return;
+        
+        switch (current) {
+            case VEHICLE_SELECTION: currentStep.setValue(Step.WELCOME); break;
+            case CUSTOM_EFFICIENCY_INPUT: currentStep.setValue(Step.VEHICLE_SELECTION); break;
+            case FUEL_SELECTION: 
+                if (selectedVehicle.getValue() != null && selectedVehicle.getValue().getName().equals("Custom")) {
+                    currentStep.setValue(Step.CUSTOM_EFFICIENCY_INPUT);
+                } else {
+                    currentStep.setValue(Step.VEHICLE_SELECTION);
+                }
+                break;
+            case DISTANCE_INPUT: currentStep.setValue(Step.FUEL_SELECTION); break;
+            case RESULT: currentStep.setValue(Step.DISTANCE_INPUT); break;
         }
     }
 }

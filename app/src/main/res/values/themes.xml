@@ -1,8 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme (Light Mode). -->
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary -->
+        <item name="colorPrimary">@color/teal_primary</item>
+        <item name="colorPrimaryDark">@color/teal_primary_dark</item>
+        <item name="colorPrimaryVariant">@color/teal_primary_variant</item>
+        <item name="colorOnPrimary">@color/teal_on_primary</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/teal_secondary</item>
+        <item name="colorOnSecondary">@color/teal_on_secondary</item>
+
+        <!-- Tertiary -->
+        <item name="colorTertiary">@color/teal_tertiary_light</item>
+
+        <!-- Background & Surface -->
+        <item name="android:colorBackground">@color/light_background</item>
+        <item name="colorSurface">@color/light_surface</item>
+        <item name="colorOnBackground">@color/light_on_background</item>
+        <item name="colorOnSurface">@color/light_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/light_on_surface_variant</item>
+        <item name="colorOutline">@color/light_outline</item>
+        <item name="colorSurfaceContainer">@color/light_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/light_surface_container_high</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/teal_primary_dark</item>
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />

@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Teal Primary Palette (Light Mode) -->
+    <color name="teal_primary">#FF00897B</color>
+    <color name="teal_primary_dark">#FF00695C</color>
+    <color name="teal_primary_variant">#FF004D40</color>
+    <color name="teal_on_primary">#FFFFFFFF</color>
+
+    <!-- Teal Secondary Palette (Light Mode) -->
+    <color name="teal_secondary">#FF26A69A</color>
+    <color name="teal_on_secondary">#FFFFFFFF</color>
+
+    <!-- Light Mode Surfaces -->
+    <color name="light_background">#FFF5F5F5</color>
+    <color name="light_surface">#FFFFFFFF</color>
+    <color name="light_on_background">#FF1C1B1F</color>
+    <color name="light_on_surface">#FF1C1B1F</color>
+    <color name="light_on_surface_variant">#FF49454F</color>
+    <color name="light_outline">#FF79747E</color>
+    <color name="light_surface_container">#FFECECE6</color>
+    <color name="light_surface_container_high">#FFE6E6E0</color>
+
+    <!-- Teal Primary Palette (Dark Mode) -->
+    <color name="teal_primary_night">#FF80CBC4</color>
+    <color name="teal_on_primary_night">#FF003731</color>
+
+    <!-- Teal Secondary Palette (Dark Mode) -->
+    <color name="teal_secondary_night">#FF4DB6AC</color>
+    <color name="teal_on_secondary_night">#FF00332E</color>
+
+    <!-- Dark Mode Surfaces -->
+    <color name="dark_background">#FF121212</color>
+    <color name="dark_surface">#FF1E1E1E</color>
+    <color name="dark_on_background">#FFE6E1E5</color>
+    <color name="dark_on_surface">#FFE6E1E5</color>
+    <color name="dark_on_surface_variant">#FFCAC4D0</color>
+    <color name="dark_outline">#FF938F99</color>
+    <color name="dark_surface_container">#FF2B2B2B</color>
+    <color name="dark_surface_container_high">#FF363636</color>
+
+    <!-- Accent / Tertiary -->
+    <color name="teal_tertiary_light">#FF009688</color>
+    <color name="teal_tertiary_dark">#FFA7FFEB</color>
+
+    <!-- Material 3 Seed -->
+    <color name="seed">#FF009688</color>
 </resources>

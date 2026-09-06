@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="vehicle" type="com.cbs.fuelest.VehicleItem" />
+        <variable name="viewModel" type="com.cbs.fuelest.FuelViewModel" />
+    </data>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> viewModel.selectVehicle(vehicle)}"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerInside"
+                android:src="@{vehicle.drawableResId}" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{vehicle.name}"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:minLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="4dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{vehicle.notes}"
+                android:gravity="center"
+                android:textSize="11sp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
