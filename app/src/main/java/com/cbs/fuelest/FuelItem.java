@@ -1,9 +1,6 @@
 package com.cbs.fuelest;
 
-/**
- * Data model representing a single fuel type option.
- * Stores the fuel's display information and price per liter.
- */
+
 public class FuelItem {
 
     private final String name;

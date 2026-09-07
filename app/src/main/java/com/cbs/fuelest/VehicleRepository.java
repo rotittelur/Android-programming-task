@@ -3,11 +3,6 @@ package com.cbs.fuelest;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Static data repository providing hardcoded vehicle presets and fuel types
- * for the Malaysian market. Contains 10 cars, 10 motorcycles, and 4 commercial
- * vehicles with their respective fuel efficiency ratings.
- */
 public final class VehicleRepository {
 
     private VehicleRepository() {

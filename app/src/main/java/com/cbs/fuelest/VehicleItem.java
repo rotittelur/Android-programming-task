@@ -1,9 +1,5 @@
 package com.cbs.fuelest;
 
-/**
- * Data model representing a single vehicle preset.
- * Stores the vehicle's display information and fuel efficiency rating.
- */
 public class VehicleItem {
 
     public enum Category {

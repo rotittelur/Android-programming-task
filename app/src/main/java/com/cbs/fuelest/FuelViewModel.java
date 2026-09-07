@@ -33,6 +33,7 @@ public class FuelViewModel extends ViewModel {
     // --- Computed Results ---
     public MutableLiveData<String> fuelNeededResult = new MutableLiveData<>("");
     public MutableLiveData<String> estimatedCostResult = new MutableLiveData<>("");
+    public MutableLiveData<String> calculationDetails = new MutableLiveData<>("");
 
     // --- Data Lists ---
     public List<VehicleItem> getCars() { return VehicleRepository.getCars(); }
@@ -102,8 +103,24 @@ public class FuelViewModel extends ViewModel {
                 double fuelNeeded = dist / eff;
                 double estimatedCost = fuelNeeded * price;
 
+                // Set the final results
                 fuelNeededResult.setValue(String.format("%.2f Liters", fuelNeeded));
                 estimatedCostResult.setValue(String.format("RM %.2f", estimatedCost));
+
+                // Build the calculation steps string
+                String mathSteps = String.format(
+                        "Distance: %.2f km\n" +
+                                "Efficiency: %.2f km/L\n" +
+                                "Fuel Price: RM %.2f/L\n\n" +
+                                "Formula:\n" +
+                                "%.2f km ÷ %.2f km/L = %.2f L\n" +
+                                "%.2f L × RM %.2f = RM %.2f",
+                        dist, eff, price,
+                        dist, eff, fuelNeeded,
+                        fuelNeeded, price, estimatedCost
+                );
+                calculationDetails.setValue(mathSteps); // Send to UI
+
                 currentStep.setValue(Step.RESULT);
             }
         } catch (NumberFormatException e) {
@@ -115,6 +132,7 @@ public class FuelViewModel extends ViewModel {
         selectedVehicle.setValue(null);
         selectedFuel.setValue(null);
         distance.setValue("");
+        calculationDetails.setValue("");
         currentStep.setValue(Step.WELCOME);
     }
     

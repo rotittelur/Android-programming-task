@@ -1,28 +1,37 @@
-# Vehicle Fuel Consumption Estimator (PBL1)
+# Petrol Nice (PBL1) 🚗⛽
 
-An interactive Android application designed to estimate trip fuel requirements and travel costs using modern Android architecture patterns.
+**Petrol Nice** is a sleek, native Android application engineered to help Malaysian motorists accurately forecast their travel expenses and fuel consumption. Built with a modern dark and teal Material Design interface, the app transforms a standard calculator into a dynamic, multi-step interactive wizard.
 
 ## Features
 
-- **Fuel Cost & Volume Calculation**: Computes total fuel needed (L) and overall trip cost (RM) using user-defined travel distance and vehicle efficiency.
-- **Preset Fuel Options**: Integrated dropdown menu featuring current Malaysian fuel price points:
-  - BUDI Madani RON95 (RM 1.99)
-  - BUDI Diesel (RM 2.10)
-  - RON95 Retail (RM 3.77)
-  - RON97 Retail (RM 4.25)
-  - Diesel Retail (RM 4.67)
-- **Custom Pricing Support**: Includes an dynamic input field for manual price entry when selecting "Other (Custom Price)".
-- **Input Sanitization**: Handles decimal commas, extra spaces, and invalid formats to prevent runtime crashes.
+* **Multi-Step Interactive Wizard:** A seamless, state-driven user flow managed entirely within a single screen (Welcome ➔ Vehicle ➔ Fuel ➔ Distance ➔ Result).
+* **Comprehensive Vehicle Catalog:** Select from horizontal carousels of Cars, Motorcycles, Trucks, and Buses.
+* **Custom Efficiency Support:** Manually input your exact vehicle fuel consumption (km/L) if it isn't listed in the presets.
+* **Smart Fuel Filtering:** Automatically filters fuel choices based on vehicle type (e.g., commercial trucks are only shown Diesel options).
+* **Localized Pricing (Malaysia):** Includes current retail rates and targeted subsidy frameworks (BUDI Madani RON95/Diesel, RON95, RON97, Diesel).
+* **Calculation Breakdown:** Transparently displays the exact mathematical formula and working steps used to generate the final estimated cost and volume.
+* **Flexible Navigation:** Features a dynamic "Back" button to reverse steps safely and a "Start Over" function for quick resets.
 
 ## Tech Stack & Architecture
 
-- **Language**: Java
-- **Build System**: Gradle (Kotlin DSL)
-- **Architecture**: MVVM (Model-View-ViewModel)
-- **Android Jetpack Components**:
-  - `ViewModel`: Handles calculation logic and state persistence.
-  - `LiveData`: Drives reactive UI state updates.
-  - `DataBinding`: Provides two-way UI-data binding to streamline layout management.
+* **Language:** Java
+* **Build System:** Gradle (Kotlin DSL)
+* **Architecture:** strict MVVM (Model-View-ViewModel)
+* **Android Jetpack & UI Components:**
+  * `ViewModel` & Enum-based State Machine for robust state retention.
+  * `LiveData` for reactive UI updates.
+  * `DataBinding` for two-way binding and cleaner XML layouts.
+  * `RecyclerView` with custom adapters for efficient list rendering.
+  * **Material 3 Components** (`MaterialCardView`, `TextInputLayout`, floating action buttons).
+
+## App Flow
+
+1. **Welcome Screen:** Initiates the calculator.
+2. **Vehicle Selection:** Choose a predefined vehicle or select "Custom".
+3. **Custom Efficiency (Conditional):** Enter km/L if "Custom" was selected.
+4. **Fuel Selection:** Pick the relevant fuel tier based on your vehicle.
+5. **Distance Input:** Enter your total travel distance in kilometers.
+6. **Result Screen:** View the total fuel needed, estimated cost, and a detailed mathematical breakdown.
 
 ## Setup & Installation
 
