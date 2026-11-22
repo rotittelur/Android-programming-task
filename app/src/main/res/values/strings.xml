@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Learning Trivia Assessment Hub</string>
+    <string name="app_subtitle">Interactive Academic Trivia Portal</string>
+
+    <!-- Main Activity -->
+    <string name="registration_title">Student Registration</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_student_id">Student ID (e.g., GMI2026-001)</string>
+    <string name="hint_program_group">Program / Group (e.g., DSE 4A)</string>
+    <string name="btn_start_assessment">Start Assessment</string>
+
+    <!-- Validation Messages -->
+    <string name="err_name_empty">Full name is required.</string>
+    <string name="err_name_invalid">Enter a valid name (at least 3 letters).</string>
+    <string name="err_id_empty">Student ID is required.</string>
+    <string name="err_id_invalid">Student ID must be at least 4 alphanumeric characters.</string>
+    <string name="err_group_empty">Program or Group is required.</string>
+    <string name="err_group_invalid">Enter a valid Program / Group (at least 2 characters).</string>
+    <string name="msg_fix_validation">Please fix the highlighted registration fields.</string>
+
+    <!-- Quiz Activity -->
+    <string name="quiz_loading">Fetching 10 live trivia questions…</string>
+    <string name="quiz_error_default">Unable to load trivia questions. Please check your internet connection and retry.</string>
+    <string name="quiz_error_api_code">Trivia server returned no questions. Please retry in a moment.</string>
+    <string name="quiz_error_parse">Error reading trivia payload from server.</string>
+    <string name="btn_retry">Retry Connection</string>
+    <string name="quiz_student_label">Candidate: %1$s (%2$s)</string>
+    <string name="quiz_progress_format">Question %1$d / %2$d</string>
+    <string name="quiz_score_format">Score: %1$d</string>
+    <string name="feedback_prompt_default">Select an answer below</string>
+    <string name="feedback_correct_label">Correct Answer!</string>
+    <string name="feedback_wrong_label">Incorrect! Correct answer: %1$s</string>
+    <string name="toast_correct">Correct! +1 point</string>
+    <string name="toast_wrong">Incorrect! Correct answer: %1$s</string>
+    <string name="btn_next_question">Next Question</string>
+    <string name="btn_view_results">View Performance Report</string>
+
+    <!-- Result Activity -->
+    <string name="result_title">Performance Analytics Report</string>
+    <string name="result_student_info">%1$s | ID: %2$s | %3$s</string>
+    <string name="result_percentage_format">%1$.1f%%</string>
+    <string name="result_raw_score_format">%1$d / %2$d Questions Correct</string>
+    <string name="result_correct_label">Correct: %1$d</string>
+    <string name="result_incorrect_label">Incorrect: %1$d</string>
+    <string name="tier_distinction">Performance Level: Distinction</string>
+    <string name="tier_merit">Performance Level: Merit</string>
+    <string name="tier_pass">Performance Level: Pass</string>
+    <string name="tier_needs_improvement">Performance Level: Needs Improvement</string>
+    <string name="result_breakdown_header">Itemized Answer Breakdown</string>
+    <string name="breakdown_question_format">Q%1$d. %2$s</string>
+    <string name="breakdown_your_answer">Your Answer: %1$s</string>
+    <string name="breakdown_correct_answer">Correct Answer: %1$s</string>
+    <string name="breakdown_unanswered">Not Answered</string>
+    <string name="btn_restart_assessment">Restart Assessment</string>
+
+    <!-- Accessibility Content Descriptions -->
+    <string name="cd_app_logo">Smart Learning Hub Logo</string>
+    <string name="cd_feedback_icon">Answer feedback status indicator</string>
+    <string name="cd_result_status_icon">Question pass or fail icon</string>
+</resources>
