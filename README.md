@@ -3,112 +3,115 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
-A concise, high-level summary of what your project does, who it is for, and why it exists.
+---
+
+# Smart Learning Hub 🎓
+
+An interactive Android Trivia & Quiz application built in Java. The app fetches live quiz questions across multiple categories and difficulty levels, allowing users to test their knowledge, track their scores, and review their answers.
 
 ---
 
-## 🚀 Features
+## 🛠️ Tech Stack & Technologies Used
 
-- **Feature 1:** Description of key feature or functionality.
-- **Feature 2:** Description of another core capability.
-- **Feature 3:** Description of performance, security, or usability benefit.
-
----
-
-## 🛠️ Tech Stack
-
-- **Language:** Node.js / Python / TypeScript / Go / etc.
-- **Framework:** React / Express / Django / FastAPI / etc.
-- **Database:** PostgreSQL / MongoDB / SQLite / etc.
-- **Tools:** Docker, Jest, Tailwind CSS, etc.
+* **Language:** Java (Android SDK)
+* **IDE:** Android Studio
+* **Networking:** [Volley](https://developer.android.com/training/volley) (`JsonObjectRequest` for asynchronous HTTP calls)
+* **API:** [Open Trivia Database (OpenTDB)](https://opentdb.com/)
+* **UI Components:** Android XML Layouts, Material Design Components (`CardView`, `Button`, `ProgressBar`, `TextView`)
+* **JSON Parsing:** Native `org.json` (`JSONObject`, `JSONArray`)
 
 ---
 
-## 📋 Prerequisites
+## 🚀 Getting Started
 
-Before getting started, make sure you have the following installed on your local system:
+### Prerequisites
+* **Android Studio** (Electric Eel or newer recommended)
+* **JDK:** 11 or 17
+* **Android SDK:** API Level 24+ (Android 7.0+)
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (v18+) or [Python](https://www.python.org/) (v3.9+)
-- A package manager (`npm`, `yarn`, `pnpm`, or `pip`)
+## 🔑 API & Key Implementation Guide
 
----
-
-## ⚙️ Installation & Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   # or
-   pip install -r requirements.txt
-   ```
-
-3. **Configure environment variables:**
-   Create a `.env` file in the root directory and add your key-value pairs:
-   ```env
-   PORT=3000
-   API_KEY=your_api_key_here
-   DATABASE_URL=your_database_url
-   ```
-
-4. **Run the application:**
-   ```bash
-   npm run dev
-   # or
-   python main.py
-   ```
+### Default API (Open Trivia DB)
+By default, this app uses the **Open Trivia Database (`opentdb.com`)**, which is a **free REST API that requires NO API key**. The app works out of the box after cloning!
 
 ---
 
-## 📖 Usage
+### Where to Update or Add an API Key
+If you want to switch to a different trivia provider (e.g., API Ninjas, QuizAPI.io) or add custom API authentication, all network request configurations are centralized in **one file**:
 
-Provide practical examples or screenshots showing how to use the project.
+📍 **File Path:**  
+`app/src/main/java/com/gmi/smartlearninghub/network/TriviaApiClient.java`
 
-```bash
-# Example command
-npm start
+#### 1. Adding an API Key via Query Parameter
+If your API requires the key inside the URL endpoint, modify the `TRIVIA_API_URL` constant:
+
+```java
+public class TriviaApiClient {
+    // Replace with your endpoint and API key
+    private static final String TRIVIA_API_URL = 
+        "https://your-api-provider.com/v1/questions?amount=10&apiKey=YOUR_API_KEY_HERE";
+}
+```
+
+#### 2. Adding an API Key via HTTP Headers (Recommended for Secure APIs)
+If your API requires an authorization header (e.g., `X-Api-Key` or `Bearer Token`), override `getHeaders()` inside the `JsonObjectRequest` in `TriviaApiClient.java`:
+
+```java
+JsonObjectRequest request = new JsonObjectRequest(
+        Request.Method.GET,
+        TRIVIA_API_URL,
+        null,
+        response -> {
+            // Process response
+        },
+        error -> {
+            // Handle error
+        }
+) {
+    @Override
+    public Map<String, String> getHeaders() {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("X-Api-Key", "YOUR_API_KEY_HERE");
+        // Or for Bearer tokens:
+        // headers.put("Authorization", "Bearer YOUR_TOKEN_HERE");
+        return headers;
+    }
+};
+```
+
+#### 3. Updating JSON Parsing (If Changing APIs)
+If you switch to a different provider, remember to update the JSON keys inside `TriviaApiClient.java` to match your new API's response keys:
+* `"results"` -> Main list array
+* `"question"` -> Question text
+* `"correct_answer"` -> Correct option
+* `"incorrect_answers"` -> Wrong options array
+
+---
+
+## 📂 Key Project Structure
+
+```text
+app/src/main/java/com/gmi/smartlearninghub/
+├── data/
+│   └── Question.java            # Model class for trivia questions
+├── network/
+│   └── TriviaApiClient.java     # Network manager for API requests & Volley queue
+└── ui/
+    ├── MainActivity.java        # Home screen & category selection
+    └── QuizActivity.java        # Quiz interface & question flow
 ```
 
 ---
 
-## 🧪 Running Tests
+## 🤝 Contributing & Customization
 
-To run the test suite, execute:
-
-```bash
-npm test
-# or
-pytest
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are always welcome!
-
-1. Fork the project.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
+1. Fork or branch off from `main`.
+2. Make your UI or logic improvements in `QuizActivity` or `TriviaApiClient`.
+3. Test network edge cases (e.g., offline state, slow network).
+4. Create a Pull Request!
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for details.
-
----
-
-## 📬 Contact
-
-- **Author:** Your Name
-- **Email:** your.email@example.com
-- **GitHub:** [@your-username](https://github.com/your-username)
+This project is open source under the MIT License.
