@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+    <!-- Pixel-stepped retro RPG crest -->
+    <path
+        android:fillColor="@color/accent_gold_dim"
+        android:pathData="M3,2h10v7h-1v2h-1v1h-2v1h-2v-1H5v-1H4V9H3V2z" />
+    <path
+        android:fillColor="@color/accent_gold"
+        android:pathData="M3,1h10v1H3V1zM2,2h1v7H2V2zM13,2h1v7h-1V2zM3,9h1v2H3V9zM12,9h1v2h-1V9zM4,11h1v1H4V11zM11,11h1v1h-1V11zM5,12h2v1H5V12zM9,12h2v1H9V12zM7,13h2v2H7V13z" />
+    <path
+        android:fillColor="@color/accent_gold_light"
+        android:pathData="M7,4h2v2h2v2H9v2H7V8H5V6h2V4z" />
+    <path
+        android:fillColor="@color/bg_screen"
+        android:pathData="M7,6h2v2H7V6z" />
+</vector>

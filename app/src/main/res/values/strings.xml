@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SideQuest</string>
+    <string name="app_subtitle">CS &amp; CYBER KNOWLEDGE QUEST</string>
+
+    <!-- Player HUD -->
+    <string name="hud_level_format">LV.%1$02d</string>
+    <string name="hud_xp_format">%1$d / %2$d XP</string>
+    <string name="hud_xp_max_format">%1$d XP · MAX</string>
+
+    <!-- Main Activity -->
+    <string name="registration_title">PLAYER PROFILE</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_student_id">Student ID (e.g., GMI2026-001)</string>
+    <string name="hint_program_group">Group (e.g., DSE 4A)</string>
+    <string name="section_domain_select">SELECT QUEST DOMAIN</string>
+    <string name="section_difficulty_select">SELECT DIFFICULTY TIER</string>
+    <string name="category_count_format">%1$d Qs</string>
+    <string name="tier_1_title">LV.1 NOVICE</string>
+    <string name="tier_1_mult">1.0x XP</string>
+    <string name="tier_2_title">LV.2 ADEPT</string>
+    <string name="tier_2_mult">1.5x XP</string>
+    <string name="tier_3_title">LV.3 ARCHITECT</string>
+    <string name="tier_3_mult">2.0x XP</string>
+    <string name="btn_start_assessment">START QUEST</string>
+
+    <!-- Validation Messages -->
+    <string name="err_name_empty">Full name is required.</string>
+    <string name="err_name_invalid">Enter a valid name (at least 3 letters).</string>
+    <string name="err_id_empty">Student ID is required.</string>
+    <string name="err_id_invalid">Student ID must be at least 4 alphanumeric characters.</string>
+    <string name="err_group_empty">Program or Group is required.</string>
+    <string name="err_group_invalid">Enter a valid Program / Group (at least 2 characters).</string>
+    <string name="msg_fix_validation">Please fix the highlighted profile fields.</string>
+
+    <!-- Quiz Activity -->
+    <string name="quiz_loading">LOADING QUEST ENCOUNTER…</string>
+    <string name="quiz_loading_subtitle">%1$s · LV.%2$d</string>
+    <string name="quiz_error_title">CONNECTION INTERRUPTED</string>
+    <string name="quiz_error_default">Unable to reach the SideQuest server. Check your connection and retry.</string>
+    <string name="quiz_error_timeout">Server request timed out. Please retry in a moment.</string>
+    <string name="quiz_error_no_connection">No route to the SideQuest server. Verify your VM IP or network.</string>
+    <string name="quiz_error_server">The SideQuest backend returned an error response.</string>
+    <string name="quiz_error_network">Network error occurred while loading questions.</string>
+    <string name="quiz_error_api_code">No questions available for this category and level.</string>
+    <string name="quiz_error_parse">Error parsing question payload from server.</string>
+    <string name="btn_retry">RETRY CONNECTION</string>
+    <string name="btn_back_to_hub">BACK TO HUB</string>
+    <string name="quiz_student_label">%1$s · %2$s</string>
+    <string name="quiz_category_level_format">%1$s // LV.%2$d</string>
+    <string name="quiz_progress_format">%1$02d / %2$02d</string>
+    <string name="quiz_streak_format">STREAK x%1$d</string>
+    <string name="feedback_correct_label">CRITICAL HIT · CORRECT</string>
+    <string name="feedback_wrong_label">MISSED · ANSWER: %1$s</string>
+    <string name="explanation_default">Review this concept in the battle log after completing the stage.</string>
+    <string name="btn_next_question">NEXT QUESTION</string>
+    <string name="btn_view_results">CLAIM QUEST REWARD</string>
+
+    <!-- Result Activity -->
+    <string name="quest_status_complete">QUEST COMPLETE</string>
+    <string name="quest_status_cleared">STAGE CLEARED</string>
+    <string name="quest_status_failed">TRAINING FAILED</string>
+    <string name="result_grade_format">RANK %1$s</string>
+    <string name="result_level_title_format">LVL %1$02d · %2$s</string>
+    <string name="result_level_up_badge">★ LEVEL UP!</string>
+    <string name="result_student_info">%1$s · ID %2$s · %3$s</string>
+    <string name="result_xp_bar_format">XP %1$d / %2$d (+%3$d XP)</string>
+    <string name="result_xp_bar_max_format">XP %1$d / MAX (+%2$d XP)</string>
+    <string name="stat_label_score">SCORE</string>
+    <string name="stat_label_accuracy">ACCURACY</string>
+    <string name="stat_label_xp_gained">XP GAINED</string>
+    <string name="stat_label_best_streak">BEST STREAK</string>
+    <string name="stat_value_score_format">%1$d/%2$d</string>
+    <string name="stat_value_accuracy_format">%1$d%%</string>
+    <string name="stat_value_xp_format">+%1$d</string>
+    <string name="stat_value_streak_format">%1$d</string>
+    <string name="btn_play_next_level">PLAY LV.%1$d</string>
+    <string name="btn_retry_stage">RETRY STAGE</string>
+    <string name="result_breakdown_header">BATTLE LOG // QUESTION BREAKDOWN</string>
+    <string name="breakdown_question_format">Q%1$02d. %2$s</string>
+    <string name="breakdown_your_answer">YOURS: %1$s</string>
+    <string name="breakdown_correct_answer">ANSWER: %1$s</string>
+    <string name="breakdown_unanswered">Not Answered</string>
+
+    <!-- Accessibility Content Descriptions -->
+    <string name="cd_app_logo">SideQuest emblem</string>
+    <string name="cd_category_icon">Category icon</string>
+    <string name="cd_feedback_icon">Answer feedback status indicator</string>
+    <string name="cd_result_status_icon">Question pass or fail icon</string>
+    <string name="cd_rpg_crest">RPG rank crest emblem</string>
+</resources>

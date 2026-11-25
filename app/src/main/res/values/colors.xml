@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark-First Architectural Surface System -->
+    <color name="bg_screen">#0E1116</color>
+    <color name="bg_surface">#161B22</color>
+    <color name="bg_card">#161B22</color>
+    <color name="bg_surface_alt">#1C222B</color>
+    <color name="card_stroke">#2A313C</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#F0F4F8</color>
+    <color name="text_secondary">#8B949E</color>
+    <color name="text_muted">#636C76</color>
+    <color name="text_on_primary">#0E1116</color>
+    <color name="text_on_accent">#0E1116</color>
+
+    <!-- Cool Steel Cyan (Primary Interactive Accent) -->
+    <color name="color_primary">#58A6FF</color>
+    <color name="color_primary_dark">#388BFD</color>
+    <color name="accent_cyan">#58A6FF</color>
+    <color name="accent_cyan_dim">#132338</color>
+    <color name="badge_bg">#132338</color>
+
+    <!-- Retro-RPG Gold / Amber (XP, Level, Rank) -->
+    <color name="color_secondary">#F5A623</color>
+    <color name="accent_gold">#F5A623</color>
+    <color name="accent_gold_light">#FFD580</color>
+    <color name="accent_gold_dim">#2E2311</color>
+
+    <!-- Option & Semantic Feedback -->
+    <color name="option_default_bg">#161B22</color>
+    <color name="status_correct">#2ECC71</color>
+    <color name="status_correct_bg">#12291D</color>
+    <color name="status_wrong">#E74C3C</color>
+    <color name="status_wrong_bg">#2D1517</color>
+    <color name="status_neutral">#8B949E</color>
+</resources>
