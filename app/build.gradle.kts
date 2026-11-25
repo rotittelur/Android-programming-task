@@ -19,7 +19,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "API_BASE_URL", "\"https://35-247-150-85.sslip.io\"")
+        buildConfigField("String", "API_BASE_URL", "\"https://API_URL\"")
     }
 
     buildTypes {
