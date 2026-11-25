@@ -12,6 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate() called");
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        applySystemBarInsets();
         progressionManager = new ProgressionManager(this);
 
         if (savedInstanceState != null) {
@@ -67,6 +73,26 @@ public class MainActivity extends AppCompatActivity {
         refreshPlayerHud();
         setupListeners();
         fetchCategoriesFromBackend();
+    }
+
+    private void applySystemBarInsets() {
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        if (controller != null) {
+            controller.setAppearanceLightStatusBars(false);
+            controller.setAppearanceLightNavigationBars(false);
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.rootLayout, (v, windowInsets) -> {
+            Insets systemBars = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout()
+            );
+            Insets ime = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
+            int bottomInset = Math.max(systemBars.bottom, ime.bottom);
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, bottomInset);
+            return windowInsets;
+        });
+        ViewCompat.requestApplyInsets(binding.rootLayout);
     }
 
     private void preloadSavedProfile() {

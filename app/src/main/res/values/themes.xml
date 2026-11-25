@@ -10,9 +10,10 @@
         <item name="colorOnSurface">@color/text_primary</item>
         <item name="colorError">@color/status_wrong</item>
         <item name="android:windowBackground">@color/bg_screen</item>
-        <item name="android:statusBarColor">@color/bg_screen</item>
-        <item name="android:navigationBarColor">@color/bg_screen</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>

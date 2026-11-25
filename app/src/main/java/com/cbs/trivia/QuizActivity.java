@@ -13,6 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.cbs.trivia.databinding.ActivityQuizBinding;
@@ -68,6 +73,7 @@ public class QuizActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate() called");
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
+        applySystemBarInsets();
         progressionManager = new ProgressionManager(this);
 
         optionRows = new LinearLayout[]{
@@ -113,6 +119,24 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         loadTriviaQuestions();
+    }
+
+    private void applySystemBarInsets() {
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        if (controller != null) {
+            controller.setAppearanceLightStatusBars(false);
+            controller.setAppearanceLightNavigationBars(false);
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.rootLayout, (v, windowInsets) -> {
+            Insets systemBars = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return windowInsets;
+        });
+        ViewCompat.requestApplyInsets(binding.rootLayout);
     }
 
     private void extractSessionExtras() {
